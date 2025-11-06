@@ -1,12 +1,14 @@
 package com.lab;
 
-// Buggy 4: Does not throw exception for short passwords
-public class BuggyPassword4 implements IPassword {
+// Buggy 3: Wrong exception message for short passwords
+public class BugWrongMessage implements IPassword {
     protected int passwordHash;
-    
-    public BuggyPassword4(String pw) throws Exception {
+
+    public BugWrongMessage(String pw) throws Exception {
         String trimmedPW = pw.trim();
-        // Bug: missing short password check
+        if (isToShort(trimmedPW)) {
+            throw new Exception("Wrong message");  // Bug: incorrect message
+        }
         if (containsNumber(trimmedPW) == false) {
             throw new Exception("Does not contain a number");
         }
@@ -19,6 +21,10 @@ public class BuggyPassword4 implements IPassword {
             hash = hash * 31 + input.charAt(i);
         }
         return hash;
+    }
+    
+    private boolean isToShort(String pw) {
+        return pw.length() < 12;
     }
     
     private boolean containsNumber(String text) {

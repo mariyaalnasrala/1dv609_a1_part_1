@@ -1,20 +1,19 @@
 package com.lab;
 
-// Buggy 3: Wrong exception message for short passwords
-public class BuggyPassword3 implements IPassword {
+public class BugToShortPassword implements IPassword{
     protected int passwordHash;
-    
-    public BuggyPassword3(String pw) throws Exception {
-        String trimmedPW = pw.trim();
+
+    public BugToShortPassword(String pw) throws Exception {
+        String trimmedPW = pw.trim(); // Remove whitespace
         if (isToShort(trimmedPW)) {
-            throw new Exception("Wrong message");  // Bug: incorrect message
+            throw new Exception("To short password");
         }
         if (containsNumber(trimmedPW) == false) {
             throw new Exception("Does not contain a number");
         }
         this.passwordHash = simpleHash(trimmedPW);
     }
-    
+
     private int simpleHash(String input) {
         int hash = 7;
         for (int i = 0; i < input.length(); i++) {
@@ -22,20 +21,22 @@ public class BuggyPassword3 implements IPassword {
         }
         return hash;
     }
-    
+
     private boolean isToShort(String pw) {
-        return pw.length() < 12;
+        return pw.length() < 11; // Bug
     }
-    
+
     private boolean containsNumber(String text) {
         return text.matches(".*\\d.*");
     }
-    
-    public int getPasswordHash() {
-        return this.passwordHash;
-    }
-    
+
+    @Override
     public boolean isPasswordSame(IPassword other) {
         return this.passwordHash == other.getPasswordHash();
+    }
+
+    @Override
+    public int getPasswordHash() {
+        return this.passwordHash;
     }
 }

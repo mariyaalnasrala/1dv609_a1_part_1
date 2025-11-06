@@ -1,19 +1,18 @@
 package com.lab;
 
-public class BuggyPassword implements IPassword{
+// Buggy 5: Does not throw exception if password lacks number
+public class BugMissingNumberCheck implements IPassword {
     protected int passwordHash;
 
-    public BuggyPassword(String pw) throws Exception {
-        String trimmedPW = pw.trim(); // Remove whitespace
+    public BugMissingNumberCheck(String pw) throws Exception {
+        String trimmedPW = pw.trim();
         if (isToShort(trimmedPW)) {
             throw new Exception("To short password");
         }
-        if (containsNumber(trimmedPW) == false) {
-            throw new Exception("Does not contain a number");
-        }
+        // Bug: missing number check
         this.passwordHash = simpleHash(trimmedPW);
     }
-
+    
     private int simpleHash(String input) {
         int hash = 7;
         for (int i = 0; i < input.length(); i++) {
@@ -21,22 +20,16 @@ public class BuggyPassword implements IPassword{
         }
         return hash;
     }
-
+    
     private boolean isToShort(String pw) {
-        return pw.length() < 11; // Bug
+        return pw.length() < 12;
     }
-
-    private boolean containsNumber(String text) {
-        return text.matches(".*\\d.*");
-    }
-
-    @Override
-    public boolean isPasswordSame(IPassword other) {
-        return this.passwordHash == other.getPasswordHash();
-    }
-
-    @Override
+    
     public int getPasswordHash() {
         return this.passwordHash;
+    }
+    
+    public boolean isPasswordSame(IPassword other) {
+        return this.passwordHash == other.getPasswordHash();
     }
 }

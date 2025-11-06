@@ -4,7 +4,6 @@ For this assignment you may select programming language, test framework, and cod
 We provide Java and .js code. 
 
 
-
 ## Goals
 - Practice your ability to write simple unit tests in a framework.
   - run tests and evaluate results
@@ -29,7 +28,7 @@ Write a test suite for the Password class provided.
  * There are correct and buggy versions of the Password class. 
    * The correct version is defined as correct and should not be changed.
    * None of the tests may fail for the correct version. 
-   * For each buggy version your test suite should have at least one test that failes. 
+   * For each buggy version your test suite should have at least one test that failes. One of the bugs is hard to do this for, see question.
    * Each test should fail for at least one buggy version which no other test fails (no redundant tests)
   
  * Artifacts to show during examination
@@ -58,6 +57,7 @@ Write a test suite for the Password class provided.
 - Can all code be covered by code coverage?
 - What kind of "asserts" can be done in your testing framework?
 - What kind(s) of Code Coverage is shown in your code coverage tool?
+- Why is BugDoesNotHash easy to solve?
 
 ---
 

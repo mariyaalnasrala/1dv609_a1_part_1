@@ -1,18 +1,18 @@
 package com.lab;
 
-// Buggy 1: Does not trim whitespace
-class BuggyPassword1 implements IPassword {
+// Buggy 2: Allows passwords that are too short
+public class BugVeryShort implements IPassword {
     protected int passwordHash;
-    
-    public BuggyPassword1(String pw) throws Exception {
-        // Bug: Don't trim whitespace
-        if (isToShort(pw)) {
+
+    public BugVeryShort(String pw) throws Exception {
+        String trimmedPW = pw.trim();
+        if (isToShort(trimmedPW)) {
             throw new Exception("To short password");
         }
-        if (containsNumber(pw) == false) {
+        if (containsNumber(trimmedPW) == false) {
             throw new Exception("Does not contain a number");
         }
-        this.passwordHash = simpleHash(pw);
+        this.passwordHash = simpleHash(trimmedPW);
     }
     
     private int simpleHash(String input) {
@@ -24,7 +24,7 @@ class BuggyPassword1 implements IPassword {
     }
     
     private boolean isToShort(String pw) {
-        return pw.length() < 12;
+        return pw.length() < 6;  // Bug: wrong minimum length
     }
     
     private boolean containsNumber(String text) {

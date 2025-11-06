@@ -1,16 +1,18 @@
 package com.lab;
 
-// Buggy 5: Does not throw exception if password lacks number
-public class BuggyPassword5 implements IPassword {
+// Buggy 1: Does not trim whitespace
+class BugDoesNotTrim implements IPassword {
     protected int passwordHash;
     
-    public BuggyPassword5(String pw) throws Exception {
-        String trimmedPW = pw.trim();
-        if (isToShort(trimmedPW)) {
+    public BugDoesNotTrim(String pw) throws Exception {
+        // Bug: Don't trim whitespace
+        if (isToShort(pw)) {
             throw new Exception("To short password");
         }
-        // Bug: missing number check
-        this.passwordHash = simpleHash(trimmedPW);
+        if (containsNumber(pw) == false) {
+            throw new Exception("Does not contain a number");
+        }
+        this.passwordHash = simpleHash(pw);
     }
     
     private int simpleHash(String input) {
@@ -23,6 +25,10 @@ public class BuggyPassword5 implements IPassword {
     
     private boolean isToShort(String pw) {
         return pw.length() < 12;
+    }
+    
+    private boolean containsNumber(String text) {
+        return text.matches(".*\\d.*");
     }
     
     public int getPasswordHash() {
