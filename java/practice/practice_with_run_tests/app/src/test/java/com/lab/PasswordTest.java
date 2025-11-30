@@ -1,8 +1,11 @@
 package com.lab;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 /**
  * Test class for Password implementations.
@@ -21,10 +24,10 @@ import static org.junit.jupiter.api.Assertions.*;
  * - BugIsPasswordSameAlwaysTrue: isPasswordSame always returns true
  * - BugWrongHashingAlgorithm: Wrong hashing algorithm
  */
-
 public class PasswordTest {
+
     private IPassword getPassword(String s) throws Exception {
-        return (IPassword) new Password(s);
+        // return (IPassword) new Password(s);
         // return (IPassword) new BugDoesNotTrim(s);
         // return (IPassword) new BugToShortPassword(s);
         // return (IPassword) new BugToShortPassword(s);
@@ -32,12 +35,26 @@ public class PasswordTest {
         // return (IPassword) new BugWrongExceptionMessage(s);
         // return (IPassword) new BugMissingPasswordLengthCheck(s);
         // return (IPassword) new BugMissingNumberCheck(s);
-        // return (IPassword) new BugIsPasswordSameAlwaysTrue(s);
+        return (IPassword) new BugIsPasswordSameAlwaysTrue(s);
         // return (IPassword) new BugWrongHashingAlgorithm(s);
     }
 
     @Test
     public void shouldAlwaysPass() throws Exception {
         assertTrue(true);
+    }
+
+    // test trimming 
+    @Test
+    public void testTrimming() throws Exception {
+        IPassword WithSpace = getPassword("   ValidPassword123   ");
+        IPassword WithoutSpace = getPassword("ValidPassword123");
+        assertTrue(WithSpace.isPasswordSame(WithoutSpace), "Should be same after trimming");
+    }
+
+    // test short password
+    @Test
+    public void ThrowShortPassword() throws Exception {
+
     }
 }

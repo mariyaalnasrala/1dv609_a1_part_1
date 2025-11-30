@@ -2,11 +2,24 @@
 
 ## Report
 
+I began by working with the Practice_with_run_tests project to test various bugs related to password handling. I utilized Java as the programming language along with the JUnit testing framework to write and run unit tests. Additionally, I used the jaCoCo tool to measure test coverage.
 
-## Table
 
-| --- | ---| --- | --- | --- | --- |
-| --- | ---| --- | --- | --- | --- |
-| --- | ---| --- | --- | --- | --- |
-| --- | ---| --- | --- | --- | --- |
-| --- | ---| --- | --- | --- | --- |
+- **Features** i tested in the passwords:
+1. Passwords must be **trimmed**.
+2. Passwords must have a **minimum length**.
+2.
+
+
+## Password Test
+✅ ❌
+
+| Testname       | *Correct* | *Not Trim*| *To Short* | *Very short* | *Missing Num check* | *P Always same* | *Hash* | *Missing length check* | *Wrong Exception message* |
+|---|---|---|---|---|---|---|---|---|---|
+|Trim password|✅|❌|✅ |✅ |✅ |✅ |✅ |✅ |✅ |
+|Short password|---|---|---|---|---|---|---|---|---|
+|Hash|---|---|---|---|---|---|---|---|---|
+|With numbers|---|---|---|---|---|---|---|---|---|
+|Without numbers|---|---|---|---|---|---|---|---|---|
+|Same always|---|---|---|---|---|---|---|---|---|
+|Coverage|---|---|---|---|---|---|---|---|---|
