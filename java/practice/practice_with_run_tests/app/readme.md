@@ -8,7 +8,7 @@ I began by working with the Practice_with_run_tests project to test various bugs
 - **Features** i tested in the passwords:
 1. Passwords must be **trimmed**.
 2. Passwords must have a **minimum length**.
-2.
+3. Passwords ahould not be **empty**.
 
 
 ## Password Test
@@ -18,7 +18,8 @@ I began by working with the Practice_with_run_tests project to test various bugs
 |---|---|---|---|---|---|---|---|---|---|
 |Trim password|✅|❌|✅ |✅ |✅ |✅ |✅ |✅ |✅ |
 |Empty Password |✅|✅|✅|✅|✅|✅|✅|✅|✅|
-|Short password|---|---|---|---|---|---|---|---|---|
+|Too Short password|✅|✅|❌|❌|✅|✅|✅|✅|✅|
+|very short Password|---|---|---|---|---|---|---|---|---|
 |Hash|---|---|---|---|---|---|---|---|---|
 |With numbers|---|---|---|---|---|---|---|---|---|
 |Without numbers|---|---|---|---|---|---|---|---|---|

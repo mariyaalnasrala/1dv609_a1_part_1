@@ -1,5 +1,6 @@
 package com.lab;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,11 +33,11 @@ public class PasswordTest {
         // return (IPassword) new BugToShortPassword(s);
         // return (IPassword) new BugToShortPassword(s);
         // return (IPassword) new BugVeryShort(s);
-        // return (IPassword) new BugWrongExceptionMessage(s);
+        return (IPassword) new BugWrongExceptionMessage(s);
         // return (IPassword) new BugMissingPasswordLengthCheck(s);
         // return (IPassword) new BugMissingNumberCheck(s);
         // return (IPassword) new BugIsPasswordSameAlwaysTrue(s);
-        return (IPassword) new BugWrongHashingAlgorithm(s);
+        // return (IPassword) new BugWrongHashingAlgorithm(s);
     }
 
     @Test
@@ -51,7 +52,6 @@ public class PasswordTest {
         assertTrue(NotEmptyPassword != null);
     }
 
-
     // test trimming 
     @Test
     public void testTrimming() throws Exception {
@@ -60,13 +60,12 @@ public class PasswordTest {
         assertTrue(WithSpace.isPasswordSame(WithoutSpace), "Should be same after trimming");
     }
 
-    // test short password
+    // test too short password
     @Test
-    public void TestShortPassword() throws Exception {
-        IPassword Short = getPassword("abc");
-        IPassword Long = getPassword("abcdefg12335!?");
-        assertEquals(Short, "too short");
+    public void TestTooShortPassword() throws Exception {
+        assertThrows(Exception.class, () -> {getPassword("abcnbhtgkj");});
+
     }
 
-    
+
 }
