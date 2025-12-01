@@ -17,6 +17,7 @@ I began by working with the Practice_with_run_tests project to test various bugs
 | Testname       | *Correct* | *Not Trim*| *To Short* | *Very short* | *Missing Num check* | *P Always same* | *Hash* | *Missing length check* | *Wrong Exception message* |
 |---|---|---|---|---|---|---|---|---|---|
 |Trim password|✅|❌|✅ |✅ |✅ |✅ |✅ |✅ |✅ |
+|Empty Password |✅|✅|✅|✅|✅|✅|✅|✅|✅|
 |Short password|---|---|---|---|---|---|---|---|---|
 |Hash|---|---|---|---|---|---|---|---|---|
 |With numbers|---|---|---|---|---|---|---|---|---|

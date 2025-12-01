@@ -35,14 +35,22 @@ public class PasswordTest {
         // return (IPassword) new BugWrongExceptionMessage(s);
         // return (IPassword) new BugMissingPasswordLengthCheck(s);
         // return (IPassword) new BugMissingNumberCheck(s);
-        return (IPassword) new BugIsPasswordSameAlwaysTrue(s);
-        // return (IPassword) new BugWrongHashingAlgorithm(s);
+        // return (IPassword) new BugIsPasswordSameAlwaysTrue(s);
+        return (IPassword) new BugWrongHashingAlgorithm(s);
     }
 
     @Test
     public void shouldAlwaysPass() throws Exception {
         assertTrue(true);
     }
+
+    // pass if not empty
+    @Test
+    public void NotEmpty() throws Exception {
+        IPassword NotEmptyPassword = getPassword("NotEmpty123!");
+        assertTrue(NotEmptyPassword != null);
+    }
+
 
     // test trimming 
     @Test
@@ -54,7 +62,11 @@ public class PasswordTest {
 
     // test short password
     @Test
-    public void ThrowShortPassword() throws Exception {
-
+    public void TestShortPassword() throws Exception {
+        IPassword Short = getPassword("abc");
+        IPassword Long = getPassword("abcdefg12335!?");
+        assertEquals(Short, "too short");
     }
+
+    
 }
