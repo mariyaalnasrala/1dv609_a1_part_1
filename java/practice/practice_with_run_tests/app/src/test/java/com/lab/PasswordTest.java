@@ -32,40 +32,57 @@ public class PasswordTest {
         // return (IPassword) new BugDoesNotTrim(s);
         // return (IPassword) new BugToShortPassword(s);
         // return (IPassword) new BugToShortPassword(s);
-        // return (IPassword) new BugVeryShort(s);
+        return (IPassword) new BugVeryShort(s);
         // return (IPassword) new BugWrongExceptionMessage(s);
         // return (IPassword) new BugMissingPasswordLengthCheck(s);
         // return (IPassword) new BugMissingNumberCheck(s);
         // return (IPassword) new BugIsPasswordSameAlwaysTrue(s);
-        return (IPassword) new BugWrongHashingAlgorithm(s);
+        // return (IPassword) new BugWrongHashingAlgorithm(s);
     }
+
+    private final String correctPassword = "CorrectVersion123!";
+    private final String[] incorrectPass = {"", "fgh76", "vgfrd6432r"};
 
     @Test
     public void shouldAlwaysPass() throws Exception {
         assertTrue(true);
     }
 
-    // test trimming 
     @Test
-    public void testTrimming() throws Exception {
-        IPassword WithSpace = getPassword("   ValidPassword123   ");
-        IPassword WithoutSpace = getPassword("ValidPassword123");
-        assertTrue(WithSpace.isPasswordSame(WithoutSpace), "Should be same after trimming");
-    }
-
-    // test too short password
-    @Test
-    public void TestTooShortPassword() throws Exception {
-        assertThrows(Exception.class, () -> getPassword("abcrtu87123"),
-                "Should throw exception for password shorter than 12 characters");
+    public void constructorShouldThrowExceptionForShortPasswords() {
+        for (String pw : incorrectPass) {
+            Exception ex = assertThrows(Exception.class, () -> getPassword(pw));
+            assertEquals("Too short password", ex.getMessage());
+        }
 
     }
 
-    // password with numbers
     @Test
-    public void testPasswordWithNumbers() {
-        assertDoesNotThrow(() -> getPassword("Correctt123!"));
+    public void constructorShouldThrowExceptionForPasswordWithoutNumber() {
+        assertThrows(Exception.class, () -> getPassword("PasswordWithoutNum"));
     }
 
+    @Test
+    public void isPasswordSameShouldReturnTrueForTrimmedPasswords() throws Exception {
+        IPassword p1 = getPassword("   ValidPassword123   ");
+        IPassword p2 = getPassword("ValidPassword123");
+        assertTrue(p1.isPasswordSame(p2));
+    }
 
+    @Test
+    public void isPasswordSameShouldReturnFalseForDifferentPasswords() throws Exception {
+        IPassword p1 = getPassword("ValidPassword123!");
+        IPassword p2 = getPassword("DifferentPassword123!");
+        assertFalse(p1.isPasswordSame(p2));
+    }
+
+    @Test
+    public void passwordHashShouldBeSameForSamePasswords() throws Exception {
+        IPassword pw = getPassword(correctPassword);
+        int hashValue = 7;
+        for (int i = 0; i < correctPassword.length(); i++) {
+            hashValue = hashValue * 31 + correctPassword.charAt(i);
+        }
+        assertEquals(hashValue, pw.getPasswordHash());
+    }
 }
