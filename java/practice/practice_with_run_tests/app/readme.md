@@ -7,8 +7,10 @@ I began by working with the Practice_with_run_tests project to test various bugs
 
 - **Features** i tested in the passwords:
 1. Passwords must be **trimmed**.
-2. Passwords must have a **minimum length**.
-3. Passwords ahould not be **empty**.
+2. Passwords must meet a **minimum length**.
+3. Passwords must contain **numbers**
+4. Passwords **hashing** must be correct
+5. Different passwords does not have the **same hash**
 
 
 ## Password Test
@@ -17,11 +19,9 @@ I began by working with the Practice_with_run_tests project to test various bugs
 | Testname       | *Correct* | *Not Trim*| *To Short* | *Very short* | *Missing Num check* | *P Always same* | *Hash* | *Missing length check* | *Wrong Exception message* |
 |---|---|---|---|---|---|---|---|---|---|
 |Trim password|✅|❌|✅ |✅ |✅ |✅ |✅ |✅ |✅ |
-|Empty Password |✅|✅|✅|✅|✅|✅|✅|✅|✅|
-|Too Short password|✅|✅|❌|❌|✅|✅|✅|✅|✅|
-|very short Password|---|---|---|---|---|---|---|---|---|
-|Hash|---|---|---|---|---|---|---|---|---|
-|With numbers|---|---|---|---|---|---|---|---|---|
-|Without numbers|---|---|---|---|---|---|---|---|---|
-|Same always|---|---|---|---|---|---|---|---|---|
-|Coverage|---|---|---|---|---|---|---|---|---|
+|To Short password|✅|✅|❌|❌|✅|✅|✅|❌|❌|
+|Hash|✅|✅|✅|✅|✅|✅|❌|✅|✅|
+|Without numbers|✅|✅|✅|✅|❌|✅|✅|✅|✅|
+|Same always|✅|✅|✅|✅|✅|✅|✅|✅|✅|
+|Different pass|✅|✅|✅|✅|❌|✅|✅|✅|✅|
+|Coverage|100%|83%|83%|83%|83%|83%|83%|83%|83%|
