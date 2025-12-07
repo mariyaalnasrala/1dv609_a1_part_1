@@ -24,4 +24,5 @@ I began by working with the Practice_with_run_tests project to test various bugs
 |Without numbers|✅|✅|✅|✅|❌|✅|✅|✅|✅|
 |Same always|✅|✅|✅|✅|✅|✅|✅|✅|✅|
 |Different pass|✅|✅|✅|✅|❌|✅|✅|✅|✅|
-|Coverage|100%|83%|83%|83%|83%|83%|83%|83%|83%|
+|MyBug|✅|✅|✅|✅|✅|✅|✅|✅|✅|
+|Coverage|100%|83%|83%|83%|83%|83%|83%|83%|83%|100%|
