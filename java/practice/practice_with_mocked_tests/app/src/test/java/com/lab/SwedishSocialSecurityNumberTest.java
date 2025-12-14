@@ -1,8 +1,8 @@
 package com.lab;
 
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
-import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
 
 public class SwedishSocialSecurityNumberTest {
     
@@ -22,4 +22,5 @@ public class SwedishSocialSecurityNumberTest {
         assertEquals("01", ssn.getDay());
         assertEquals("0017", ssn.getSerialNumber());
     }
+    
 }
